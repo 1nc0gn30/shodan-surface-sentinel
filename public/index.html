@@ -738,6 +738,22 @@
     // Run initial scan on load
     performScan();
   </script>
-  <script src="/assets/sovereign-upgrade.js" defer></script>
+  
+
+  <script src="/sovereign_tutorial.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      if (window.createSovereignTutorial) {
+        window.createSovereignTutorial({
+          toolId: "shodan-surface-sentinel",
+          toolName: "Shodan Attack Surface Sentinel",
+          tagline: "Passive attack surface scout and exposed port auditor via Shodan intelligence!",
+          accentColor: "#EF4444",
+          steps: [{"icon": "\ud83d\udd2d", "title": "What is Attack Surface?", "desc": "All the open doors, ports, and services on your servers that are visible to the public internet."}, {"icon": "\ud83d\udd0d", "title": "Passive Reconnaissance", "desc": "Audits your infrastructure using historical internet scans without sending noisy or invasive packets."}, {"icon": "\ud83d\udee1\ufe0f", "title": "Close Forgotten Ports", "desc": "Spots accidentally exposed databases (Redis, MongoDB, Postgres) before scanners find them."}]
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
