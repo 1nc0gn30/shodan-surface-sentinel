@@ -75,9 +75,10 @@ def test_http_server_health_and_local_scan():
 
 def test_cli_help_and_local_scan():
     import shutil
-    cli_bin = shutil.which("shodan-surface-sentinel") or "/usr/local/bin/shodan-surface-sentinel"
+    local_bin = ROOT_DIR / "bin" / "shodan-surface-sentinel"
+    cli_bin = str(local_bin) if local_bin.exists() else (shutil.which("shodan-surface-sentinel") or "/usr/local/bin/shodan-surface-sentinel")
     res_help = subprocess.run(
-        [cli_bin, "--help"],
+        [sys.executable, cli_bin, "--help"] if str(cli_bin).endswith("shodan-surface-sentinel") and local_bin.exists() else [cli_bin, "--help"],
         capture_output=True,
         text=True,
         timeout=5,
@@ -86,7 +87,7 @@ def test_cli_help_and_local_scan():
     assert "Shodan Attack Surface Sentinel" in res_help.stdout
 
     res_scan = subprocess.run(
-        [cli_bin, "scan", "127.0.0.1", "--json"],
+        [sys.executable, cli_bin, "scan", "127.0.0.1", "--json"] if local_bin.exists() else [cli_bin, "scan", "127.0.0.1", "--json"],
         capture_output=True,
         text=True,
         timeout=8,

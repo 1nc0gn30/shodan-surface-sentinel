@@ -5,7 +5,6 @@ Zero-egress defensive asset auditor and InternetDB engine.
 Endpoints:
 - GET /health, /api/health
 - GET /api/scan?target=<ip_or_host>
-- GET /api/myip
 - Static asset serving from public/
 Zero external runtime dependencies.
 """

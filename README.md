@@ -1,138 +1,108 @@
-<div align="center">
-  <img src="assets/hero-banner.svg" alt="Shodan Surface Sentinel — Sovereign Architecture Banner" width="100%" />
-</div>
+# Shodan Attack Surface Sentinel
 
-<br />
+[![Zoth Studio v2 Dossier](https://img.shields.io/badge/Zoth_Studio_v2-Dossier-D4AF37?style=flat-square)](https://zoth.nullai.tech/tools/shodan-surface-sentinel)
+[![Loopback Daemon](https://img.shields.io/badge/Daemon-127.0.0.1%3A8130-38BDF8?style=flat-square)](http://127.0.0.1:8130)
+[![License: MIT](https://img.shields.io/badge/License-MIT-10B981?style=flat-square)](LICENSE)
 
-<div align="center">
-  <a href="https://zoth.nullai.tech/tools/shodan-surface-sentinel"><img src="https://img.shields.io/badge/Zoth_Studio_v2-Workspace-D4AF37?style=for-the-badge&logo=sparkles&logoColor=black" alt="Zoth Studio Workspace" /></a>
-  <a href="http://127.0.0.1:8130"><img src="https://img.shields.io/badge/Daemon-Port_:8130-38BDF8?style=for-the-badge&logo=linux&logoColor=black" alt="Port :8130" /></a>
-  <a href="https://nullai.tech"><img src="https://img.shields.io/badge/Security-Zero--Egress-10B981?style=for-the-badge&logo=shield&logoColor=black" alt="Zero Egress" /></a>
-</div>
+Passive attack surface auditor and Shodan InternetDB reconnaissance workstation. Queries indexed port exposures, Common Platform Enumeration (CPE) software stacks, reverse hostnames, and confirmed CVE vulnerabilities without sending intrusive active probing packets.
 
-# 🛡️ Shodan Attack Surface Sentinel (`shodan-surface-sentinel`)
+## Overview
 
-> **Zero-egress defensive asset auditor and InternetDB exposure engine. Real-time open port detection, CPE software stack fingerprinting, and confirmed CVE vulnerability reconnaissance.**
+**Shodan Attack Surface Sentinel** (`shodan-surface-sentinel`) is a zero-dependency Python 3 HTTP service, CLI inspector, and browser workstation integrated into **Zoth Studio v2** (`https://zoth.nullai.tech/tools/shodan-surface-sentinel`) and **ZothOS v3.4.0**.
 
----
-
-## 🏛️ Architectural Overview
-
-**Shodan Attack Surface Sentinel** is an official sovereign defensive tool in the **[Zoth Studio v2](https://zoth.nullai.tech)** (77-Tool Matrix) and **[ZothOS Linux 3.3](https://zothos.nullai.tech)** ecosystem, engineered by **1nc0gn30 • NullAI ([@1nc0gn30](https://github.com/1nc0gn30))**.
-
-| Property | Specification |
+| Property | Value |
 | :--- | :--- |
 | **Tool ID** | `shodan-surface-sentinel` |
 | **Category** | `Security & Enclave` |
-| **Daemon Port** | `http://127.0.0.1:8130` |
-| **Workbench Route** | `http://127.0.0.1:3000/tools/shodan-surface-sentinel` |
-| **API Backend** | Shodan InternetDB + Local Socket DNS Resolver |
-| **Execution Mode** | Local Enclave & Browser |
-| **License** | 100% Free & Open Access (Zero Paywalls) |
+| **Loopback Bind** | `127.0.0.1:8130` |
+| **Zoth Studio v2 Dossier** | `https://zoth.nullai.tech/tools/shodan-surface-sentinel` |
+| **Local Studio Route** | `http://127.0.0.1:3000/tools/shodan-surface-sentinel` |
+| **Runtime Dependencies** | Python 3.10+ standard library (`http.server`, `socket`, `urllib`) |
+| **License** | MIT (100% free and open-source) |
 
----
-
-## 💎 Key Capabilities
-
-- **InternetDB Exposure Audit**: Passively queries Shodan InternetDB with zero intrusive scanning or active probing packets.
-- **Port & Service Fingerprinting**: Identifies open edge ports and maps recognized services (SSH, HTTP, HTTPS, FastCGI, Docker, Ollama-AI).
-- **CPE Component Mapping**: Extracts Common Platform Enumeration (CPE) software stacks to isolate vulnerable legacy software.
-- **Confirmed CVE Exposure Detection**: Cross-references open ports and components with verified CVE vulnerability lists.
-- **Local Enclave Inspection**: Safely inspects loopback addresses (`127.0.0.1`) and private RFC1918 networks.
-
----
-
-## 🚀 ZothOS CLI & Subcommands
-
-Audit any infrastructure perimeter directly from the command line:
-
-```bash
-# Check installation and live daemon status
-shodan-surface-sentinel --status
-# Or deterministic JSON telemetry
-shodan-sentinel --json
-
-# Audit an external IP or domain
-surface-sentinel scan 1.1.1.1
-surface-sentinel scan nullai.tech
-
-# Output structured JSON for pipeline integration
-shodan-sentinel scan 1.1.1.1 --json
-
-# Run local sentinel daemon
-shodan-surface-sentinel serve --port 8130
-```
-
----
-
-## ☕ 100% Free Open Access & Sovereign Architecture
-
-Every tool across the Zoth ecosystem is **100% free, open, and unlocked by default**. Zero paywalls, zero license modals, zero blur locks.
-
-If you appreciate the sovereign defense tools of ZothOS, consider supporting the continuous development:
-
-* **☕ Buy Us a Coffee (Stripe)**: [buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
-* **◎ Solana Tip Address**: `GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK` (`solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`)
-
----
-
-<div align="center">
-  <sub>Engineered by <b>1nc0gn30 • NullAI</b> (<a href="https://github.com/1nc0gn30">@1nc0gn30</a>) &bull; <a href="https://nullai.tech">NullAI Platform</a> &bull; <a href="https://zoth.nullai.tech">Zoth Studio v2</a></sub>
-</div>
-
----
-
-## 🏛️ ZothOS v3.4, Zoth Studio v2 & Obsidian Second Brain Ecosystem
+## Architecture
 
 ```mermaid
 flowchart LR
-    subgraph ZothOS["🐧 ZothOS v3.4 CLI & Braille TUI"]
-        CLI["shodan-surface-sentinel --help / --json"]
-        TUI["shodan-surface-sentinel-tui<br/>Unicode U+2800 2x4 Braille"]
-    end
-
-    subgraph Workstation["⚡ Sovereign Workstation"]
-        WEB["http://127.0.0.1:3000<br/>REST API & /health"]
-    end
-
-    subgraph Studio["🌌 Zoth Studio v2 & ZothOS-Lite"]
-        GODMODE["http://127.0.0.1:3000/tools/shodan-surface-sentinel<br/>God-Mode Workstation"]
-        LITE["http://127.0.0.1:8145<br/>ZothOS-Lite Web Desktop"]
-    end
-
-    subgraph SecondBrain["💎 Obsidian Second Brain & STDP"]
-        TRACKER["http://127.0.0.1:8151<br/>Zoth Obsidian Tracker"]
-        NEURO["http://127.0.0.1:8094<br/>Neuro-Memory STDP Cortex"]
-        NOTE["Studio/Tools/Studio shodan-surface-sentinel.md"]
-    end
-
-    CLI --> WEB
-    TUI --> WEB
-    WEB <--> GODMODE
-    WEB <--> LITE
-    WEB --> TRACKER
-    TRACKER <--> NOTE
-    NOTE <--> NEURO
+    CLI["bin/shodan-surface-sentinel"] --> API["server.py (127.0.0.1:8130)"]
+    TUI["bin/shodan-surface-sentinel-tui"] --> CLI
+    UI["public/index.html"] --> API
+    API --> DNS["Local Socket DNS Resolver"]
+    API --> ENCLAVE["RFC1918 / Loopback Enclave Guard"]
+    API --> IDB["Shodan InternetDB (internetdb.shodan.io)"]
 ```
 
-### Cross-Surface Integration Matrix
+- **`server.py`**: Standard-library `HTTPServer` daemon bound to `127.0.0.1:8130` by default. Resolves hostnames via `socket.gethostbyname`, short-circuits loopback (`127.0.0.0/8`, `::1`) and private RFC1918 targets (`10.0.0.0/8`, `192.168.0.0/16`) to local enclave inspection, and queries `https://internetdb.shodan.io/<ip>` for public IPv4 targets.
+- **Service & Severity Mapping**: Maps 25 common TCP ports (`21` FTP through `27017` MongoDB, including `2375` Docker and `11434` Ollama-AI) and classifies perimeter posture into `SECURE`, `LOW`, `MEDIUM`, `HIGH`, or `CRITICAL` based on confirmed CVEs and exposed administrative daemons.
+- **`public/index.html`**: Browser workstation with preset targets (`1.1.1.1`, `8.8.8.8`, `9.9.9.9`, `127.0.0.1`), port/CPE/CVE cards, light/dark theme toggle, and raw JSON telemetry export.
+- **`bin/shodan-surface-sentinel` & `bin/shodan-surface-sentinel-tui`**: Portable CLI wrapper and Unicode `U+2800` Braille telemetry harness.
 
-| Surface | Endpoint / Binary | Capabilities |
-| :--- | :--- | :--- |
-| **Standalone Workstation** | `http://127.0.0.1:3000` | 100% Free & Open-Access Web Deck, live `/health` & REST telemetry |
-| **Zoth Studio v2 Route** | `http://127.0.0.1:3000/tools/shodan-surface-sentinel` | Interactive God-Mode component inside Zoth Studio (`https://zoth.nullai.tech`) |
-| **ZothOS v3.4 CLI & TUI** | `shodan-surface-sentinel` / `shodan-surface-sentinel-tui` | Global binary in `/usr/local/bin/` with Unicode `U+2800` Braille TUI & `--json` output |
-| **ZothOS-Lite Web Desktop** | `http://127.0.0.1:8145` | Browser-native KDE-style window manager & terminal launcher |
-| **Zoth Obsidian Tracker** | `http://127.0.0.1:8151` | Interactive Obsidian Second Brain vault explorer (`~/Documents/Obsidian Vault/Studio/Tools/Studio shodan-surface-sentinel.md`) |
-| **Neuro-Memory STDP Cortex** | `http://127.0.0.1:8094` | 3-Factor STDP synaptic memory daemon & 21-tool MCP server |
+## Quickstart
 
 ```bash
-# Inspect CLI & Unicode U+2800 Braille TUI on ZothOS v3.4
-shodan-surface-sentinel --help
-shodan-surface-sentinel-tui --status
-shodan-surface-sentinel-tui --json
+git clone https://github.com/1nc0gn30/shodan-surface-sentinel.git
+cd shodan-surface-sentinel
 
-# Verify Second Brain Vault & 12-Step Verification Gallery on :8151
-zoth-obsidian-tracker --verify
+# Start the local loopback daemon on 127.0.0.1:8130
+python3 server.py --host 127.0.0.1 --port 8130
 ```
 
+Open `http://127.0.0.1:8130` in a browser, or query the REST endpoints directly:
+
+```bash
+# Daemon health check
+curl -s http://127.0.0.1:8130/health | python3 -m json.tool
+
+# Passive attack surface scan (IPv4 or hostname)
+curl -s "http://127.0.0.1:8130/api/scan?target=1.1.1.1" | python3 -m json.tool
+```
+
+### REST API Endpoints
+
+| Method | Route | Description |
+| :--- | :--- | :--- |
+| `GET` | `/health`, `/api/health` | Returns service health, port (`8130`), engine identifier, and uptime in seconds. |
+| `GET` | `/api/scan?target=<ip_or_host>` | Resolves `<ip_or_host>`, evaluates local enclave rules or queries Shodan InternetDB, and returns ports, service mappings, CPEs, hostnames, CVEs, and `threat_level`. |
+| `GET` | `/` | Serves the static browser workstation from `public/`. |
+
+## CLI & ZothOS Usage
+
+On ZothOS v3.4.0 (`shodan-surface-sentinel` installed in `/usr/local/bin/`) or directly from a repository checkout (`./bin/shodan-surface-sentinel`):
+
+```bash
+# Display CLI flags and subcommands
+./bin/shodan-surface-sentinel --help
+
+# Emit JSON installation and daemon status
+./bin/shodan-surface-sentinel --json
+
+# Audit an IP or domain from the terminal
+./bin/shodan-surface-sentinel scan 1.1.1.1
+./bin/shodan-surface-sentinel scan 127.0.0.1 --json
+
+# Launch the HTTP daemon via the CLI wrapper
+./bin/shodan-surface-sentinel serve --host 127.0.0.1 --port 8130
+
+# Render the Unicode U+2800 Braille TUI sparkline view or JSON benchmark
+./bin/shodan-surface-sentinel-tui
+./bin/shodan-surface-sentinel-tui --json
+
+# Launch the Electron desktop shell (when Electron is installed)
+./bin/shodan-surface-sentinel --electron
+```
+
+## Testing & Verification
+
+Run the automated unit and integration test suite (requires `pytest`):
+
+```bash
+python3 -m pytest -q
+```
+
+The test suite verifies target URL/port stripping, `COMMON_PORTS` mappings, ephemeral-port HTTP `/health` and `/api/scan?target=127.0.0.1` responses, root HTML rendering, and CLI `--help` / `scan 127.0.0.1 --json` execution.
+
+## License
+
+Released under the [MIT License](LICENSE). Copyright (c) 2026 [1nc0gn30](https://1nc0gn30.si) (`@1nc0gn30`) & [NullAI](https://nullai.tech).
+
+100% free and open-source with zero paywalls. Optional support: [Buy Us a Coffee (Stripe)](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X).
